@@ -18,6 +18,9 @@ def receive():
     while True:
         try:
             message=client.recv(1024).decode("ascii")
+
+            if message.startswith(nickname):  # Check if message starts with the client's nickname
+                continue
             if message=="NICK":
                 client.send(nickname.encode("ascii"))
             else:
